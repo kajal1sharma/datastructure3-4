@@ -41,6 +41,20 @@ void printnode(Node *root){
     
 }
 
+Node* addatstart(Node *head,int d1,int d2){
+    Node *temp=new Node(d1,d2);
+    
+    if(head==NULL){
+        head=temp;
+    }
+    else{
+        temp->next=head;
+        head=temp;
+    }
+    
+    return head;
+}
+
 int main()
 {
         Node *head=NULL;//=new Node(14,45);
@@ -48,6 +62,8 @@ int main()
        head=createnode(head,12,14);
         createnode(head,15,80);
         createnode(head,187,174);
+        
+        head=addatstart(head,15,336);
         
         printnode(head);
         

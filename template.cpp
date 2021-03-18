@@ -48,6 +48,9 @@ int main()
     else{
         cout<<"found";
     }
+
+    //second linked list =>copy
+    //second linked list=>reverse paste;
     
     return 0;
 }

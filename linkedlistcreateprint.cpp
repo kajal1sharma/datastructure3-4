@@ -58,7 +58,15 @@ Node* addatstart(Node *head,int d1,int d2){
 int main()
 {
         Node *head=NULL;//=new Node(14,45);
-        
+        int n;
+        cout<<"number of nodes";
+        cin>>n;
+        while(n>0){
+            int data,data2;
+            cin>>data>>data2;
+            createnode(head,15,80);
+            n--;
+        }
        head=createnode(head,12,14);
         createnode(head,15,80);
         createnode(head,187,174);

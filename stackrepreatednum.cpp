@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-  int a=678;
+  int a=674448;
   
   
   stack<int> st;
@@ -22,11 +22,11 @@ int main()
   }
   
   int num=0;
-  int i=1;
+  int i=10;
   while(!st.empty()){
       num=num*i+st.top();
       st.pop();
-      i=i*10;
+      //i=i*10;
       
   }
   

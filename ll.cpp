@@ -67,3 +67,75 @@ int main()
 
     return 0;
 }
+
+
+///approach 2
+
+#include <iostream>
+
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node* next;
+    Node(int data){
+        this->next=NULL;
+        this->data=data;
+    }
+};
+
+Node * rearrange(Node* head){
+    Node *odd=head,*even=head->next,*evenhead=head->next;
+    Node *temp=even->next;
+    while(true){
+        if(temp!=NULL){
+        odd->next=temp;
+        temp=temp->next;
+        odd=odd->next;
+        }
+        else{
+            odd->next=NULL;
+        }
+        if(temp!=NULL){
+        even->next=temp;
+        temp=temp->next;
+        even=even->next;
+        }
+        else{
+            even->next=NULL;
+            break;
+        }
+        
+    }
+    
+    
+    odd->next=evenhead;
+    return head;
+    
+    
+}
+
+
+Node* print(Node* head){
+    while(head!=NULL){
+        cout<<head->data<<" ";
+    
+        head=head->next;
+    }
+}
+int main()
+{
+    Node *head=new Node(1);
+    head->next=new Node(2);
+    head->next->next=new Node(3);
+    head->next->next->next=new Node(4);
+    head->next->next->next->next=new Node(5);
+    head->next->next->next->next->next=new Node(6);
+    
+    Node *nhead=rearrange(head);
+    
+    print(nhead);
+    
+
+    return 0;
+}

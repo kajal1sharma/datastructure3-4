@@ -14,6 +14,7 @@ class Queue{
     
     public:
     void enqueue(int data){
+        
         if(this->size==50){
             cout<<"overflow";
             return;
@@ -25,11 +26,13 @@ class Queue{
             
         }
         else{
-            for(int i=this->size-1;i>=0;i++){
+            
+            for(int i=this->size-1;i>=0;i--){
                 this->arr[i+1]=this->arr[i];
             }
             this->arr[0]=data;
         }
+        
         this->front++;
         this->size++;
     }
@@ -58,7 +61,7 @@ class Queue{
     }
     
     int  frontele(){
-        if(this->front=-1){
+        if(this->front==-1){
             return -1;
             
         }
@@ -87,8 +90,15 @@ int main()
 Queue *q=new Queue();
 q->enqueue(12);
 q->enqueue(14);
+q->enqueue(121);
+q->enqueue(141);
 
-//cout<<q->frontele();
-//cout<<q->rearele();
+q->dequeue();
+q->dequeue();
+q->dequeue();
+q->dequeue();
+q->enqueue(141);
+cout<<q->frontele()<<endl;
+cout<<q->rearele();
     return 0;
 }

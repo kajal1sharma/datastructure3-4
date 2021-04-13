@@ -20,38 +20,35 @@ Node * partition(Node *head,Node *tail,Node **headp, Node **tailp){
     while(head!=pivot){
         if(head->data<pivot->data){
              if(prev==NULL){
-                *headp=head->next;
-                prev=head->next;
+                *headp=head;
+                prev=head;
+            }
+            else if(prev!=NULL){
+            
+                prev=prev->next;
             }
             head=head->next;
            
         }
         else if(head->data>pivot->data){
+            
+            Node *temp=NULL;
+            temp=head->next;
             if(prev==NULL){
                 *headp=head->next;
             }
             else{
                 prev->next=head->next;
             }
-            Node *temp=NULL;
-            temp=head->next;
             head->next=NULL;
             tail->next=head;
             tail=tail->next;
             head=temp;
         }
     }
-    
     *tailp=tail;
+    return pivot;
 }
-Node * Quicksort(Node *head, Node * tail){
-    
-    Node *headp=NULL,tailp=NULL;
-    Node *pivot=partition(head,tail,&headp,&tailp);
-    //Quicksort()
-    
-}
-
 
 Node* gettail(Node *head){
      
@@ -62,6 +59,36 @@ Node* gettail(Node *head){
      return head;
 }
 
+Node * Quicksort(Node *head, Node * tail){
+    
+    if(head==NULL || head==tail){
+        return head;
+    }
+    
+    Node *headp=NULL,*tailp=NULL;
+    Node *pivot=partition(head,tail,&headp,&tailp);
+    
+    if(headp!=pivot)
+    {
+    Node* current=headp;
+    while(current->next!=pivot){
+        current=current->next;
+    }
+    current->next=NULL;
+    headp=Quicksort(headp,current);
+    current=gettail(headp);
+    current->next=pivot;
+    }
+    
+    pivot->next=Quicksort(pivot->next,tailp);
+    
+    return headp;
+    
+}
+
+
+
+
 void print(Node * head){
     while(head!=NULL){
         cout<< head->data<<" ";
@@ -71,7 +98,7 @@ void print(Node * head){
 
 int main()
 {
-    Node *head=new Node(4);
+    Node *head=new Node(41);
     head->next=new Node(2);
    head->next->next=new Node(1);
    head->next->next->next=new Node(5);
